@@ -1,12 +1,13 @@
-phpcoloredcli
-=============
+PHP Colored Output
+==================
 
 Colored output for PHP command line script
 
 How to Use
 ==========
+
     //will print red text on blue background
-    echo ColoredOutput::getString("Red on Blue", Colors::FB_RED, Colors::BG_BLUE);
+    echo ColoredOutput::getString("Red on Blue", Colors::FG_RED, Colors::BG_BLUE);
 
     $writer = new ColoredOutput();
 
