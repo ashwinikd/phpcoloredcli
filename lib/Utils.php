@@ -1,9 +1,9 @@
 <?php
 
-class Utils {
+class CledCliUtils {
 
     public static function loadScheme($schemeName) {
-        
+
     }
 
 }
