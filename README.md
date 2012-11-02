@@ -5,7 +5,6 @@ Colored output for PHP command line script
 
 How to Use
 ==========
-    ::php
     //will print red text on blue background
     echo ColoredOutput::getString("Red on Blue", Colors::FB_RED, Colors::BG_BLUE);
 
