@@ -10,6 +10,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0
 */
 
+require_once AKD_PHPCOLCLI_LIB . "/Utils.php";
 
 /**
  * ColoredOutput class
@@ -25,12 +26,16 @@ class ColoredOutput {
     private $fgColor;
     private $bgColor;
 
-    public function __construct() {
-        $this->fgColor = Colors::FG_RED;
-        $this->bgColor = Colors::BG_BLACK;
+    /**
+     * Scheme to use
+     * @var CledCliScheme
+    */
+    private $scheme;
+
+    public function __construct($scheme) {
+        $this->scheme = CledCliUtils::loadScheme($scheme);
     }
 
-    // Returns colored string
     public static function getString($string, $fgColor = null, $bgColor = null) {
         $coloredString = "";
 
@@ -54,9 +59,35 @@ class ColoredOutput {
         return $this;
     }
 
-    public function write($string) {
+    public function write($string, $newLine = True) {
         echo(self::getString($string, $this->fgColor, $this->bgColor));
+        if($newLine) echo "\n";
     }
+
+    public function info($string, $newLine = True) {
+        $colorScheme = $this->scheme->getDefaultScheme();
+        echo self::getString($string, $colorScheme->fg(), $colorScheme->bg());
+        if($newLine) echo "\n";
+    }
+
+    public function error($string, $newLine = True) {
+        $colorScheme = $this->scheme->getErrorScheme();
+        echo self::getString($string, $colorScheme->fg(), $colorScheme->bg());
+        if($newLine) echo "\n";
+    }
+
+    public function warn($string, $newLine = True) {
+        $colorScheme = $this->scheme->getWarningScheme();
+        echo self::getString($string, $colorScheme->fg(), $colorScheme->bg());
+        if($newLine) echo "\n";
+    }
+
+    public function success($string, $newLine = True) {
+        $colorScheme = $this->scheme->getSuccessScheme();
+        echo self::getString($string, $colorScheme->fg(), $colorScheme->bg());
+        if($newLine) echo "\n";
+    }
+
 }
 
 ?>
