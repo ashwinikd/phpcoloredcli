@@ -7,15 +7,14 @@ abstract class CledCliScheme {
     protected $warn;
     protected $error;
     protected $name;
-    protected $scheme;
 
     protected abstract function init();
 
-    protected final function __construct() {
+    public final function __construct() {
         $this->init();
     }
 
-    public final function getErrorSheme() {
+    public final function getErrorScheme() {
         return $this->error;
     }
 
@@ -23,7 +22,7 @@ abstract class CledCliScheme {
         return $this->warn;
     }
 
-    public final function getDefaultSheme() {
+    public final function getDefaultScheme() {
         return $this->def;
     }
 
@@ -35,13 +34,6 @@ abstract class CledCliScheme {
         return "PHP Colored CLI Sceme " . $this->name;
     }
 
-    public final function getInstance() {
-        if(! $this->scheme) {
-            $this->scheme = new CledCliScheme();
-        }
-
-        return $this->scheme;
-    }
 }
 
 ?>
